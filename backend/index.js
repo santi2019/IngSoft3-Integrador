@@ -25,7 +25,8 @@ const db = await createPool({
 
 
 
-/* Manejo de Consultas y rutas */
+
+/* Controllers */
 
 app.get("/", (req, res) => {
     res.json("Hello this is the backend!");
@@ -34,56 +35,59 @@ app.get("/", (req, res) => {
 
 /* Mostrar libros*/
 app.get("/libros", async (req, res) => {
-   const result = await db.query('SELECT * FROM libros');
-   res.json(result[0]);
+   const data = await db.query("SELECT * FROM libros");
+   return res.json(data[0]);
 });
 
 
 /* Registrar libro*/
-app.post("/libros", (req, res) =>{
-    const q = "INSERT INTO libros (`titulo`,`descripcion`,`precio`,`portada`) VALUES (?)";
-    const values = [ 
-        req.body.titulo,
-        req.body.descripcion,
-        req.body.precio,
-        req.body.portada
-    ];
+app.post("/libros", async (req, res) =>{
 
-    db.query(q, [values], (err, data) =>{
-        if(err) return res.json(err);
-        return res.json("El libro ha sido creado !");
-    });
+    try{
+        const values = [ 
+            req.body.titulo,
+            req.body.descripcion,
+            req.body.precio,
+            req.body.portada
+        ];
+        await db.query("INSERT INTO libros (`titulo`,`descripcion`,`precio`,`portada`) VALUES (?)", [values]);
+        res.status(200).json({ message: "Libro añadido con exito !" });
+    }catch(err){
+        return res.json(err);
+    }
+
 });
 
 
-/* Borrar libro*/
-app.delete("/libros/:id", (req, res) => {
-    const libroId = req.params.id;
-    const q = "DELETE FROM libros WHERE id = ?";
+/* Borrar libro */
+app.delete("/libros/:id", async (req, res) => {
 
-    db.query(q, [libroId], (err, data) =>{
-        if(err) return res.json(err);
-        return res.json("El libro ha sido borrado !");
-    });
-})
-
-
-/* Actualizar libro*/
-app.put("/libros/:id", (req, res) => {
-    const libroId = req.params.id;
-    const q = "UPDATE libros SET `titulo` = ?, `descripcion` = ?, `precio` = ?, `portada` = ? WHERE id = ?";
-
-    const values = [ 
-        req.body.titulo,
-        req.body.descripcion,
-        req.body.precio,
-        req.body.portada
-    ];
-
-    db.query(q, [...values, libroId], (err, data) =>{
-        if(err) return res.json(err);
-        return res.json("El libro ha sido actualizado !");
-    });
+    try{
+        const libroId = req.params.id;
+    
+        await db.query("DELETE FROM libros WHERE id = ?", libroId);
+        res.status(200).json({ message: "Libro eliminado con exito !" });
+    }catch(err){
+        return res.json(err);
+    }
 });
 
+
+/* Actualizar libro */
+app.put("/libros/:id", async (req, res) => {
+    
+    try{
+        const libroId = req.params.id;
+        const values = [ 
+            req.body.titulo,
+            req.body.descripcion,
+            req.body.precio,
+            req.body.portada
+        ];
+        await db.query("UPDATE libros SET `titulo` = ?, `descripcion` = ?, `precio` = ?, `portada` = ? WHERE id = ?", [...values, libroId]);
+        res.status(200).json({ message: "Libro actualizado con exito !" });
+    }catch(err){
+        return res.json(err);
+    }
+});
 
