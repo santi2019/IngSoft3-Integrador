@@ -1,0 +1,30 @@
+name: Build and Deploy
+
+on:
+
+  push:
+    branches: [main]
+
+jobs:
+
+  build-and-publish:
+    
+    runs-on: ubuntu-latest
+   
+    steps:
+    
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Build images
+      run: docker-compose build
+        
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Tag and Push images to Docker Hub
+      run: |
+          docker tag ingsoft3-integrador_backend:latest ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-backend:latest
+          docker tag ingsoft3-integrador_frontend:latest ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest
