@@ -1,34 +1,45 @@
 import express from "express"
+import { createPool } from "mysql2/promise"
 import mysql from "mysql"
 import cors from "cors"
 
-const app = express()
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "ingsoft3int"
+/* Configuracion de conexion */
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+app.listen(8800, () => {
+    console.log("Connected to backend!")
 });
 
-app.use(express.json());
-app.use(cors())
+const db = await createPool({
+    host: "database",
+    user: "root",
+    password: "root",
+    database: "ingsoft3int",
+    port:  3306
+});
 
+
+
+
+/* Manejo de Consultas y rutas */
 
 app.get("/", (req, res) => {
     res.json("Hello this is the backend!");
 });
 
 
-app.get("/libros", (req, res) => {
-    const q = "SELECT * FROM libros";
-    db.query(q, (err, data) => {
-        if(err) return res.json(err);
-        return res.json(data);
-    });
+/* Mostrar libros*/
+app.get("/libros", async (req, res) => {
+   const result = await db.query('SELECT * FROM libros');
+   res.json(result[0]);
 });
 
 
+/* Registrar libro*/
 app.post("/libros", (req, res) =>{
     const q = "INSERT INTO libros (`titulo`,`descripcion`,`precio`,`portada`) VALUES (?)";
     const values = [ 
@@ -45,6 +56,7 @@ app.post("/libros", (req, res) =>{
 });
 
 
+/* Borrar libro*/
 app.delete("/libros/:id", (req, res) => {
     const libroId = req.params.id;
     const q = "DELETE FROM libros WHERE id = ?";
@@ -56,6 +68,7 @@ app.delete("/libros/:id", (req, res) => {
 })
 
 
+/* Actualizar libro*/
 app.put("/libros/:id", (req, res) => {
     const libroId = req.params.id;
     const q = "UPDATE libros SET `titulo` = ?, `descripcion` = ?, `precio` = ?, `portada` = ? WHERE id = ?";
@@ -74,6 +87,3 @@ app.put("/libros/:id", (req, res) => {
 });
 
 
-app.listen(8800, () => {
-    console.log("Connected to backend!")
-});

@@ -31,7 +31,7 @@ const Libros = () => {
     return (
         <div className="div">
             <h1>Libreria Rayuela</h1>
-            <div className="libros">
+            <div className="libros1">
                 {libros.map(libro => (
                     <div className="libro" key={libro.id}>
                         {libro.portada && <img src={libro.portada} alt=""/>}
