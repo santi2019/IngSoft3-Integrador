@@ -28,3 +28,18 @@ jobs:
           docker tag ingsoft3-integrador_frontend:latest ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-backend:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest
+
+    - name: Auth Google Cloud CLI
+      uses: google-github-actions/auth@v0.4.1
+      with:
+          service_account_key: ${{ secrets.GCLOUD_KEY }}
+          credentials_json: ${{ secrets.GCLOUD_KEY }}
+          project_id: ingsoft3-integrador
+
+    - name: Deploy Frontend
+      run: |
+          gcloud run deploy frontend \
+            --image=gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc \
+            --platform=managed \
+            --region=southamerica-east1 \
+            --allow-unauthenticated
