@@ -2,6 +2,7 @@ import express from "express"
 import { createPool } from "mysql2/promise"
 import mysql from "mysql"
 import cors from "cors"
+import { config } from "dotenv"
 
 
 /* Configuracion de conexion */
@@ -9,17 +10,28 @@ import cors from "cors"
 const app = express();
 app.use(express.json());
 app.use(cors());
+config();
 
 app.listen(8800, () => {
-    console.log("Connected to backend!")
+    console.log("Connected to backend!");
 });
 
+/*
 const db = await createPool({
     host: "database",
     user: "root",
     password: "root",
     database: "ingsoft3int",
     port:  3306
+}); */
+
+
+const db = await createPool({
+    host: `162.222.177.44`,
+    user: `root`,
+    password: `root`,
+    database: `ingsoft3int-database`,
+    //port:  3306
 });
 
 

@@ -2,22 +2,9 @@ version: '3'
 
 services:
     
-  database:
-    image: mysql:latest
-    container_name: database
-    environment:
-       MYSQL_DATABASE: ingsoft3int
-       MYSQL_ROOT_PASSWORD: root
-    ports:
-      - '3306:3306'
-    volumes:
-      - ./database/ingsoft3int.sql:/docker-entrypoint-initdb.d/ingsoft3int.sql
-
   backend:
     build: ./backend
     container_name: backend
-    depends_on: 
-      - database
     ports:
       - '8800:8800'
 
