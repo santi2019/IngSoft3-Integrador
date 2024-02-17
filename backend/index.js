@@ -23,17 +23,34 @@ const db = await createPool({
     password: "root",
     database: "ingsoft3int",
     port:  3306
-}); */
-
+}); 
 
 const db = await createPool({
-    host: `162.222.177.44`,
-    user: `root`,
-    password: `root`,
-    database: `ingsoft3int-database`,
+    host: "162.222.177.44",
+    user: "root",
+    password: "root",
+    database: "ingsoft3int-database",
     //port:  3306
 });
 
+host: process.env.INSTANCE_CONNECTION_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+
+*/
+
+const DB_USER = process.env.DB_USER || 'root';
+const DB_PASS = process.env.DB_PASS || 'root';
+const DB_NAME = process.env.DB_NAME || 'ingsoft3int-database';
+
+
+const db = await createPool({
+    host: "162.222.177.44",
+    user: DB_USER,
+    password: DB_PASS,
+    database: DB_NAME,
+});
 
 
 
