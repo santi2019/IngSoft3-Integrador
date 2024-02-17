@@ -40,16 +40,12 @@ host: process.env.INSTANCE_CONNECTION_NAME,
 
 */
 
-const DB_USER = process.env.DB_USER || 'root';
-const DB_PASS = process.env.DB_PASS || 'root';
-const DB_NAME = process.env.DB_NAME || 'ingsoft3int-database';
-
 
 const db = await createPool({
-    host: "162.222.177.44",
-    user: DB_USER,
-    password: DB_PASS,
-    database: DB_NAME,
+    user: `root`,
+    password: `root`,
+    database: `ingsoft3int-database`,
+    socketPath: `ingsoft3-integrador:us-central1:root`
 });
 
 
