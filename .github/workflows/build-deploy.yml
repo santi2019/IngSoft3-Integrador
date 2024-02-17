@@ -53,3 +53,8 @@ jobs:
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated
+
+          gcloud beta run services add-iam-policy-binding backend \
+            --region=southamerica-east1 \
+            --member=allUsers \
+            --role=roles/run.invoker
