@@ -59,7 +59,6 @@ jobs:
           gcloud run deploy backend \
             --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend \
             --add-cloudsql-instances ingsoft3-integrador:us-central1:root \
-            --set-env-vars "port=8080" \
             --port=8080 \
             --platform=managed \
             --region=southamerica-east1 \
