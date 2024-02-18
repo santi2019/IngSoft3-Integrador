@@ -41,8 +41,8 @@ jobs:
         gcloud auth configure-docker us-central1-docker.pkg.dev
         docker build -t gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc ./frontend
         docker build -t gcr.io/ingsoft3-integrador/ingsoft3int-backend-gc ./backend
-        docker push gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc/frontend:latest
-        docker push gcr.io/ingsoft3-integrador/ingsoft3int-backend-gc/backend:latest
+        docker push gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc
+        docker push gcr.io/ingsoft3-integrador/ingsoft3int-backend-gc
     
     
     - name: Deploy Frontend
