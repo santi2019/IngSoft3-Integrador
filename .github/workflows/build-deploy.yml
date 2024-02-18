@@ -53,4 +53,4 @@ jobs:
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated \
-            -set-env-vars PORT=8080
+            
