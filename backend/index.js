@@ -33,7 +33,7 @@ const db = await createPool({
 }); 
 
 
-GCLOUD DATABASE: */
+GCLOUD DATABASE: 
 
 const db = await createPool({
     host: "162.222.177.44",
@@ -42,9 +42,9 @@ const db = await createPool({
     database: "ingsoft3int-database",
     //port:  3306
 });
+*/
 
 
-/*
 const db = await createPool({
     host: `162.222.177.44`,
     user: `root`,
@@ -53,7 +53,7 @@ const db = await createPool({
     socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`,
     port: `3306`
 });
-*/
+
 
 
 /* Controllers */
