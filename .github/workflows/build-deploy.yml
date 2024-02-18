@@ -36,11 +36,11 @@ jobs:
           credentials_json: ${{ secrets.GCLOUD_KEY }}
           project_id: ingsoft3-integrador
 
-    - name: Build and Push to GAR
+    - name: Build and Push to Google Cloud
       run: |
         gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest ./frontend
-        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest ./backend
+        docker tag ingsoft3-integrador-frontend:latest us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest
+        docker tag ingsoft3-integrador-backend:latest us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest
         docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest
         docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest
     
