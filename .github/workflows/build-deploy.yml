@@ -39,11 +39,10 @@ jobs:
     - name: Build and Push to GAR
       run: |
         gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc ./frontend
-        docker build -t gcr.io/ingsoft3-integrador/ingsoft3int-backend-gc ./backend
-        docker push gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc
-        docker push gcr.io/ingsoft3-integrador/ingsoft3int-backend-gc
-    
+        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest ./frontend
+        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest ./backend
+        docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest
+        docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest
     
     - name: Deploy Frontend
       run: |
