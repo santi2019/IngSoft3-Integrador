@@ -35,6 +35,16 @@ jobs:
           service_account_key: ${{ secrets.GCLOUD_KEY }}
           credentials_json: ${{ secrets.GCLOUD_KEY }}
           project_id: ingsoft3-integrador
+    
+    
+    - name: Deploy Frontend
+      run: |
+          gcloud run deploy frontend \
+            --image=gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc \
+            --platform=managed \
+            --region=southamerica-east1 \
+            --allow-unauthenticated
+    
 
     - name: Deploy Backend
       run: |
@@ -45,8 +55,6 @@ jobs:
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated \
-
-            --allow-unauthenticated
 
     
             
