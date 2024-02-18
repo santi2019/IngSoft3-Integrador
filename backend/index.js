@@ -13,7 +13,7 @@ app.use(cors());
 config();
 
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
@@ -44,7 +44,7 @@ const db = await createPool({
     user: `root`,
     password: `root`,
     database: `ingsoft3int-database`,
-    socketPath: `ingsoft3-integrador:us-central1:root`
+    socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`
 });
 
 
