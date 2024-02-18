@@ -13,7 +13,7 @@ app.use(cors());
 config();
 
 
-const PORT = 8800; 
+const PORT = 8080; 
 
 
 app.listen(PORT, () => {
