@@ -47,10 +47,20 @@ jobs:
     - name: Deploy Frontend
       run: |
           gcloud run deploy frontend \
-            --image=gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc \
+            --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend \
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated
+
+
+    - name: Deploy Backend
+      run: |
+          gcloud run deploy backend \
+            --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend \
+            --add-cloudsql-instances ingsoft3-integrador:us-central1:root \
+            --platform=managed \
+            --region=southamerica-east1 \
+            --allow-unauthenticated 
     
 
    
