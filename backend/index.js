@@ -12,7 +12,9 @@ app.use(express.json());
 app.use(cors());
 config();
 
-app.listen(8800, () => {
+
+
+app.listen(8080, () => {
     console.log("Connected to backend!");
 });
 
