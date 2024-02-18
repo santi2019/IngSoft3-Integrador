@@ -13,11 +13,11 @@ app.use(cors());
 config();
 
 
-const port = process.env.port || 8080; 
+const PORT = 8080; 
 
 
-app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 /*
