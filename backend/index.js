@@ -13,11 +13,11 @@ app.use(cors());
 config();
 
 
-const port = process.env.PORT || 8080; 
+const port = process.env.port || 8080; 
 
 
 app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+  console.log(`Servidor escuchando en el puerto ${port}`);
 });
 
 /*
@@ -33,7 +33,7 @@ const db = await createPool({
 }); 
 
 
-GCLOUD DATABASE:
+GCLOUD DATABASE: */
 
 const db = await createPool({
     host: "162.222.177.44",
@@ -42,17 +42,18 @@ const db = await createPool({
     database: "ingsoft3int-database",
     //port:  3306
 });
-*/
 
 
+/*
 const db = await createPool({
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || 'root',
-    database: process.env.DB_NAME || 'ingsoft3int-database',
-    socketPath: process.env.INSTANCE_CONNECTION_NAME || '/cloudsql/ingsoft3-integrador:us-central1:root',
-    port: process.env.DB_PORT || 3306, 
+    host: `162.222.177.44`,
+    user: `root`,
+    password: `root`,
+    database: `ingsoft3int-database`, 
+    socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`,
+    port: `3306`
 });
-
+*/
 
 
 /* Controllers */
