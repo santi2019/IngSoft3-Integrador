@@ -46,12 +46,6 @@ jobs:
             --region=southamerica-east1 \
             --allow-unauthenticated \
 
-    - name: Deploy Frontend
-      run: |
-          gcloud run deploy frontend \
-            --image=gcr.io/ingsoft3-integrador/ingsoft3int-frontend-gc \
-            --platform=managed \
-            --region=southamerica-east1 \
             --allow-unauthenticated
 
     
