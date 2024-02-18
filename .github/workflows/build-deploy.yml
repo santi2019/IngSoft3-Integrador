@@ -48,6 +48,7 @@ jobs:
       run: |
           gcloud run deploy frontend \
             --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend \
+            --port=3000 \
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated
@@ -58,6 +59,7 @@ jobs:
           gcloud run deploy backend \
             --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend \
             --add-cloudsql-instances ingsoft3-integrador:us-central1:root \
+            --port=8080 \
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated 
