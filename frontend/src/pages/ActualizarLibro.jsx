@@ -24,7 +24,7 @@ const ActualizarLibro = () => {
         e.preventDefault();
 
         try{
-            await axios.put(`http://localhost:8800/libros/${libroId}`, libro);
+            await axios.put(`http://localhost:8080/libros/${libroId}`, libro);
             navigate("/");
         }catch(err){
             console.log(err);

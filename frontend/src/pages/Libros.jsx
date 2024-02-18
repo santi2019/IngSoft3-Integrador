@@ -9,7 +9,7 @@ const Libros = () => {
     useEffect(() => {
         const fetchAllLibros = async () => {
             try{
-                const res = await axios.get("http://localhost:8800/libros");
+                const res = await axios.get("http://localhost:8080/libros");
                 setLibros(res.data);
             }catch(err){
                 console.log(err);
@@ -21,7 +21,7 @@ const Libros = () => {
 
     const handleDelete = async (id) => {
         try{
-            await axios.delete("http://localhost:8800/libros/"+id);
+            await axios.delete("http://localhost:8080/libros/"+id);
             window.location.reload();
         }catch(err){
             console.log(err);
