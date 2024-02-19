@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  build-and-publish:
+  build-publish-deploy:
     
     runs-on: ubuntu-latest
    
@@ -29,6 +29,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-backend:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest
 
+
     - name: Auth Google Cloud CLI
       uses: google-github-actions/auth@v0.4.1
       with:
@@ -36,13 +37,15 @@ jobs:
           credentials_json: ${{ secrets.GCLOUD_KEY }}
           project_id: ingsoft3-integrador
 
-    - name: Build and Push to GAR
+
+    - name: Tag and Push to Google Cloud
       run: |
         gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest ./frontend
-        docker build -t us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest ./backend
+        docker tag ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-frontend:latest us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest
+        docker tag ${{ secrets.DOCKER_USERNAME }}/ingsoft3-integrador-backend:latest us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest
         docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/frontend:latest
         docker push us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend:latest
+
     
     - name: Deploy Frontend
       run: |
@@ -59,14 +62,10 @@ jobs:
           gcloud run deploy backend \
             --image=us-central1-docker.pkg.dev/ingsoft3-integrador/ingsoft3-final/backend \
             --add-cloudsql-instances ingsoft3-integrador:us-central1:root \
-            --set-env-vars "port=8080" \
             --port=8080 \
             --platform=managed \
             --region=southamerica-east1 \
             --allow-unauthenticated 
     
-
-   
-
     
             
