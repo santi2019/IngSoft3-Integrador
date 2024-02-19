@@ -21,7 +21,7 @@ const RegistrarLibro = () => {
         e.preventDefault();
 
         try{
-            await axios.post("http://localhost:8080/libros", libro);
+            await axios.post("https://backend-vgt7ckbuoq-rj.a.run.app/libros", libro);
             navigate("/");
         }catch(err){
             console.log(err);
