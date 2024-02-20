@@ -24,7 +24,10 @@ jobs:
       run: sleep 30
 
     - name: Run Tests
-      run: docker-compose exec backend npx mocha tests.js
+      run: |
+          export NODE_ENV=local
+          chmod +x ./node_modules/.bin/mocha
+          npx mocha tests.js
       working-directory: ./backend
     
    
