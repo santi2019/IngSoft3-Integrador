@@ -20,30 +20,31 @@ app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
+/* LOCAL: */
+
+let db;
+
+if (process.env.NODE_ENV === 'local') {
+    db = await createPool({
+        host: "database",
+        user: "root",
+        password: "root",
+        database: "ingsoft3int",
+        port:  3306
+    }); 
+}else{
+     db = await createPool({
+        host: `162.222.177.44`,
+        user: `root`,
+        password: `root`,
+        database: `ingsoft3int-database`, 
+        socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`,
+        port: `3306`
+    });
+}
 /*
 
-LOCAL:
-
-const db = await createPool({
-    host: "database",
-    user: "root",
-    password: "root",
-    database: "ingsoft3int",
-    port:  3306
-}); 
-
-
 GCLOUD DATABASE: 
-
-const db = await createPool({
-    host: "162.222.177.44",
-    user: "root",
-    password: "root",
-    database: "ingsoft3int-database",
-    //port:  3306
-});
-*/
-
 
 const db = await createPool({
     host: `162.222.177.44`,
@@ -53,6 +54,17 @@ const db = await createPool({
     socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`,
     port: `3306`
 });
+
+*/
+
+
+
+
+
+
+
+
+
 
 
 

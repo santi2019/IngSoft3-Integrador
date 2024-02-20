@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+
+  database:
+    image: mysql:latest
+    container_name: mysqlLocal
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ingsoft3int
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/ingsoft3int.sql:/docker-entrypoint-initdb.d/ingsoft3int.sql
     
   backend:
     build: ./backend
