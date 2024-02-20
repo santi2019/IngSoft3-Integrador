@@ -1,0 +1,42 @@
+name: Build Unit Tests
+
+on:
+
+  push:
+    branches: [main]
+
+jobs:
+
+  build-publish-deploy:
+    
+    runs-on: ubuntu-latest
+   
+    steps:
+    
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Build images
+      run: docker-compose build
+        
+    - name: Run Tests
+      run: |
+          export NODE_ENV=local
+          chmod +x ./node_modules/.bin/mocha
+          npx mocha tests.js
+      working-directory: ./backend
+      
+    - name: Run backend
+      run: nohup NODE_ENV=local node app.js &
+      working-directory: ./backend
+
+    - name: Run frontend
+      run: |
+          npm install --force
+          nohup npm start &
+      working-directory: ./frontend
+
+    
+   
+
+    
