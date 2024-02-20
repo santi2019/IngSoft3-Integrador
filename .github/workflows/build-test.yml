@@ -18,16 +18,16 @@ jobs:
       
     - name: Build images
       run: docker-compose build
+
+    - name: Run backend
+      run: nohup NODE_ENV=local node index.js &
+      working-directory: ./backend
         
     - name: Run Tests
       run: |
           export NODE_ENV=local
           chmod +x ./node_modules/.bin/mocha
           npx mocha tests.js
-      working-directory: ./backend
-      
-    - name: Run backend
-      run: nohup NODE_ENV=local node index.js &
       working-directory: ./backend
 
     - name: Run frontend
