@@ -27,7 +27,7 @@ jobs:
       working-directory: ./backend
       
     - name: Run backend
-      run: nohup NODE_ENV=local node app.js &
+      run: nohup NODE_ENV=local node index.js &
       working-directory: ./backend
 
     - name: Run frontend
