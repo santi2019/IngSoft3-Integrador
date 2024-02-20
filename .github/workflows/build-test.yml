@@ -20,7 +20,7 @@ jobs:
       run: docker-compose build
 
     - name: Run backend
-      run: nohup NODE_ENV=local node index.js &
+      run: nohup sh -c 'NODE_ENV=local node index.js' &
       working-directory: ./backend
         
     - name: Run Tests
