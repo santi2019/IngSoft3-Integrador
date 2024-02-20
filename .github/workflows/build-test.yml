@@ -25,7 +25,6 @@ jobs:
 
     - name: Run Tests
       run: |
-          export NODE_ENV=local
           chmod +x ./node_modules/.bin/mocha
           npx mocha tests.js
       working-directory: ./backend
