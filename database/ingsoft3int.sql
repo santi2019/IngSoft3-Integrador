@@ -18,7 +18,7 @@ CREATE TABLE `libros` (
 
 LOCK TABLES `libros` WRITE;
 
-INSERT INTO `libros` VALUES (1,'Lord Of The Rings','La comunidad del anillo','https://i.ibb.co/zrLjCb4/The-Fellowship-Of-The-Ring-Book-Cover-by-JRR-Tolkien-1-480.jpg',90),(2,'Economia en una lección','Libro de economia por Henry Hazlitt','https://i.ibb.co/tsMRR7Z/libro-la-economia-en-una-leccion.png',75),(3,'El futbol a sol y sombra','Cuentos de futbol por Eduardo Galeano','https://i.ibb.co/2cMVqVJ/9789876294751.jpg',50),(4,'Patrones de diseño','Patrones de software - GoF','https://i.ibb.co/yByGVXP/web-cover-es.png',150),(5,'Patrones de diseño','Patrones de software - GoF','https://i.ibb.co/yByGVXP/web-cover-es.png',150);
+INSERT INTO `libros` VALUES (1,'Lord Of The Rings','La comunidad del anillo','https://i.ibb.co/zrLjCb4/The-Fellowship-Of-The-Ring-Book-Cover-by-JRR-Tolkien-1-480.jpg',90),(2,'Economia en una lección','Libro de economia por Henry Hazlitt','https://i.ibb.co/tsMRR7Z/libro-la-economia-en-una-leccion.png',75),(3,'El futbol a sol y sombra','Cuentos de futbol por Eduardo Galeano','https://i.ibb.co/2cMVqVJ/9789876294751.jpg',50),(4,'Patrones de diseño','Patrones de software - GoF','https://i.ibb.co/yByGVXP/web-cover-es.png',150);
 
 UNLOCK TABLES;
 
