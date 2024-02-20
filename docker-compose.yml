@@ -4,10 +4,10 @@ services:
 
   database:
     image: mysql:latest
-    container_name: mysqlLocal
+    container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ingsoft3int
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
     volumes:
@@ -16,6 +16,8 @@ services:
   backend:
     build: ./backend
     container_name: backend
+    environment:
+      - NODE_ENV: glcoud
     ports:
       - '8080:8080'
 

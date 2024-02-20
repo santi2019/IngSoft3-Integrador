@@ -7,7 +7,7 @@ describe('Backend API Tests', () =>{
 
     describe('GET /', () => {
         it('Retorno de saludo de backend:', async () => {
-          const res = await fetch('http://localhost:8080/');  //https://localhost:8080/
+          const res = await fetch('http://localhost:8080/');  
           const data = await res.json();
           assert.equal(res.status, 200);
 
@@ -19,7 +19,7 @@ describe('Backend API Tests', () =>{
     
     describe('GET /libros', () => {
         it('Retorno de todos los libros:', async () => {
-          const res = await fetch('http://localhost:8080/libros');  //https://localhost:8080/libros
+          const res = await fetch('http://localhost:8080/libros');  
           const data = await res.json();
           assert.equal(res.status, 200);
 
