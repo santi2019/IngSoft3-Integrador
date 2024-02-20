@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 describe('Backend API Tests', () =>{
 
     describe('GET /', () => {
-        it('Retorno de saludo de backend:', async () => {
+        it('Retorno de saludo de backend', async () => {
           const res = await fetch('http://localhost:8080/');  
           const data = await res.json();
           assert.equal(res.status, 200);
@@ -18,7 +18,7 @@ describe('Backend API Tests', () =>{
     
     
     describe('GET /libros', () => {
-        it('Retorno de todos los libros:', async () => {
+        it('Retorno de todos los libros', async () => {
           const res = await fetch('http://localhost:8080/libros');  
           const data = await res.json();
           assert.equal(res.status, 200);
@@ -29,7 +29,7 @@ describe('Backend API Tests', () =>{
 
 
     describe('POST /libros', () => {
-        it('Registrar un nuevo libro:', async () => {
+        it('Registrar un nuevo libro', async () => {
             const nuevoLibro = {
               titulo: 'Libro desde Test',
               descripcion: 'Descripción desde el test',
