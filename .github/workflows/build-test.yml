@@ -16,19 +16,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Build images
-      run: docker-compose build
-
-    - name: Run backend
-      run: nohup sh -c 'NODE_ENV=local node index.js' &
-      working-directory: ./backend
-        
+    - name: Build and Run images
+      run: docker-compose up --build -d
+       
     - name: Run Tests
       run: |
           export NODE_ENV=local
           chmod +x ./node_modules/.bin/mocha
           npx mocha tests.js
       working-directory: ./backend
+
+    - name: Run backend
+      run: nohup sh -c 'NODE_ENV=local node index.js' &
+      working-directory: ./backend  
 
     - name: Run frontend
       run: |
