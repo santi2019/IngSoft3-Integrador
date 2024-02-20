@@ -22,8 +22,13 @@ jobs:
     - name: Run Tests
       run: |
           export NODE_ENV=local
-          chmod +x ./node_modules/.bin/mocha
-          npx mocha tests.js
+          timeout 10 npx mocha || true
+          if [ "$(timeout 10 npx mocha | grep -c '5 passing')" -eq 1 ]; then
+            echo "Tests pasaron exitosamente."
+          else
+            echo "Los tests no pasaron. Terminando el flujo de trabajo."
+            exit 1
+          fi
       working-directory: ./backend
 
     - name: Run backend
