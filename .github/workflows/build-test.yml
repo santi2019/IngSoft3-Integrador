@@ -10,30 +10,35 @@ jobs:
   build-publish-deploy:
     
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: ingsoft3int
    
     steps:
     
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Build and Run images
-      run: docker-compose up --build -d
+    - name: Build y Correr contenedor MySQL
+      run: |
+          docker build -t ingsoft3int ./database
+          docker run -d --name ingsoft3int -p 3306:3306
+      working-directory: ./database  
+          
+    - name: Run backend
+      run: nohup sh -c 'NODE_ENV=local node index.js' &
+      working-directory: ./backend  
        
     - name: Run Tests
       run: |
           export NODE_ENV=local
-          timeout 10 npx mocha || true
-          if [ "$(timeout 10 npx mocha | grep -c '5 passing')" -eq 1 ]; then
-            echo "Tests pasaron exitosamente."
-          else
-            echo "Los tests no pasaron. Terminando el flujo de trabajo."
-            exit 1
-          fi
+          chmod +x ./node_modules/.bin/mocha
+          npx mocha tests.js
       working-directory: ./backend
-
-    - name: Run backend
-      run: nohup sh -c 'NODE_ENV=local node index.js' &
-      working-directory: ./backend  
 
     - name: Run frontend
       run: |
