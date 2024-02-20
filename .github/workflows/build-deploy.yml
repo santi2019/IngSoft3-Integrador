@@ -2,8 +2,10 @@ name: Build and Deploy
 
 on:
 
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Build Unit Tests"]
+    types:
+      - completed
 
 jobs:
 
