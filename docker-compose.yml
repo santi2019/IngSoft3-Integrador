@@ -17,7 +17,7 @@ services:
     build: ./backend
     container_name: backend
     environment:
-      - NODE_ENV: glcoud
+      NODE_ENV: glcoud
     ports:
       - '8080:8080'
 
