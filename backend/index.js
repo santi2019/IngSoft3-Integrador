@@ -43,21 +43,9 @@ if (process.env.NODE_ENV === 'local') {
 }
 
 
-/*
-
-GCLOUD DATABASE: 
-
-const db = await createPool({
-    host: `162.222.177.44`,
-    user: `root`,
-    password: `root`,
-    database: `ingsoft3int-database`, 
-    socketPath: `/cloudsql/ingsoft3-integrador:us-central1:root`,
-    port: `3306`
-});
 
 
-/*
+/* CONEXION LOCAL
 const db = await createPool({
     host: "database",
     user: "root",
@@ -66,11 +54,6 @@ const db = await createPool({
     port:  3306
 }); 
 */
-
-
-
-
-
 
 
 
@@ -139,3 +122,4 @@ app.put("/libros/:id", async (req, res) => {
     }
 });
 
+export default app;
