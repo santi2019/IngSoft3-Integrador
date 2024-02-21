@@ -31,5 +31,5 @@ jobs:
 
     - name: Run Integration Tests
       run: |
-        npx codeceptjs run
+        xvfb-run npx codeceptjs run
       working-directory: ./integration_tests
