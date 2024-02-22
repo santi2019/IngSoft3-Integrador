@@ -21,8 +21,7 @@ jobs:
           chmod +x ./node_modules/.bin/mocha
           npx mocha tests.js
       working-directory: ./backend
-      continue-on-error: false
     
-   
+      continue-on-error: false
 
     
