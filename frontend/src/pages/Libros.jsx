@@ -30,7 +30,7 @@ const Libros = () => {
 
     return (
         <div className="div">
-            <h1>Libreria Rayuela</h1>
+            <h1>Libreria Rayuela2</h1>
             <div className="libros1">
                 {libros.map(libro => (
                     <div className="libro" key={libro.id}>
