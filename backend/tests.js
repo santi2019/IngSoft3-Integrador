@@ -56,7 +56,7 @@ describe('Backend Unit Test', () => {
     describe('GET /libros', () => {
       it('Deberia retornar la lista de libros esperada', () => {
         const librosEsperados = [
-          { id: 1, titulo: 'El futbol a sol 2 y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50 },
+          { id: 1, titulo: 'El futbol a sol y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50 },
           { id: 2, titulo: 'Patrones de diseño', descripcion: 'Patrones de software - GoF', portada: 'https://i.ibb.co/yByGVXP/web-cover-es.png', precio: 150 }
         ];
 
