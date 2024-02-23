@@ -10,9 +10,9 @@ on:
 jobs:
 
   build-publish-deploy:
-    
-    runs-on: ubuntu-latest
+  
     if: ${{ needs.build-run-unit-tests.result == 'success' }}
+    runs-on: ubuntu-latest
     
     steps:
     
