@@ -56,7 +56,7 @@ describe('Backend Unit Test', () => {
     describe('GET /libros', () => {
       it('Deberia retornar la lista de libros esperada', () => {
         const librosEsperados = [
-          { id: 1, titulo: 'El futbol a sol y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50 },
+          { id: 1, titulo: 'El futbol a sol 2y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50 },
           { id: 2, titulo: 'Patrones de diseño', descripcion: 'Patrones de software - GoF', portada: 'https://i.ibb.co/yByGVXP/web-cover-es.png', precio: 150 }
         ];
 
@@ -157,94 +157,6 @@ describe('Backend Unit Test', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-describe('Backend Unit Test', () => {
-
-    describe('GET /libros', () => {
-      it('Deberia retornar libros de la base de datos', () => {  
-        const getAllLibrosMock = sinon.stub(librosDatabase, 'getAllLibros')
-        .returns([
-        { id: 1, titulo: 'El futbol a sol y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50},
-        { id: 2, titulo: 'Patrones de diseño', descripcion: 'Patrones de software - GoF', portada: 'https://i.ibb.co/yByGVXP/web-cover-es.png', precio: 150}
-      ]);
-
-        const res = librosDatabase.getAllLibros();
-
-        console.log('Resultado real:', res);
-        console.log('Resultado esperado:', [
-          { id: 1, titulo: 'El futbol a sol y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50},
-          { id: 2, titulo: 'Patrones de diseño', descripcion: 'Patrones de software - GoF', portada: 'https://i.ibb.co/yByGVXP/web-cover-es.png', precio: 150}
-        ]);
-
-        expect(res).to.deep.equal([
-          { id: 1, titulo: 'El futbol a sol y sombra', descripcion: 'Cuentos de futbol por Eduardo Galeano', portada: 'https://i.ibb.co/2cMVqVJ/9789876294751.jpg', precio: 50},
-          { id: 2, titulo: 'Patrones de diseño', descripcion: 'Patrones de software - GoF', portada: 'https://i.ibb.co/yByGVXP/web-cover-es.png', precio: 150}
-        ]);
-
-        getAllLibrosMock.restore();
-      });
-    });
-
-
-
-
-    describe('Actualizar Libro', () => {
-      const libro = 
-        { id: 1, 
-          titulo: 'Libro original',
-          descripcion: 'descripcion original',
-          precio: 80,
-          portada: 'original.png' 
-        };
-
-        const nuevosDatos = 
-        { titulo: 'Libro actualizado',
-          descripcion: 'descripcion actualizado',
-          precio: 10,
-          portada: 'actualizado.png'  
-        };
-
-      it('Debería actualizar un libro en la base de datos', () => {
-        const actualizarLibroStub = sinon.stub(librosDatabase, 'actualizarLibro')
-          .withArgs(libro.id, nuevosDatos)
-          .returns({ id: libro.id, ...nuevosDatos });
-    
-        
-        const resultado = librosDatabase.actualizarLibro(libro.id, nuevosDatos);
-    
-        
-        expect(resultado).to.deep.equal({ id: libro.id, ...nuevosDatos });
-    
-        
-        actualizarLibroStub.restore();
-      });
-    });
-
-
-
-
-});
-
-
-
-*/
 
 
 
